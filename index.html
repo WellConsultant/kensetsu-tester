@@ -239,31 +239,6 @@
   .cta-list li:last-child { border-bottom: none; }
   .cta-list .ck { color: #2a5a8c; font-weight: 900; font-size: 15px; }
 
-  .email-cta {
-    background: #fff;
-    border: 2px solid #2a5a8c;
-    border-radius: 14px;
-    padding: 30px 40px;
-    display: inline-block;
-    max-width: 520px;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 24px;
-  }
-  .email-cta p { margin-bottom: 12px; }
-  .email-cta .email-addr {
-    font-size: 28px;
-    font-weight: 900;
-    color: #2a5a8c;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-  }
-  .email-cta .email-addr a {
-    color: #2a5a8c;
-    text-decoration: none;
-  }
-  .email-cta .email-addr a:hover { text-decoration: underline; }
-
   .contact {
     background: #1a3a5c;
     color: #fff;
@@ -277,6 +252,60 @@
   .contact h4 { font-size: 13px; margin-bottom: 12px; color: rgba(255,255,255,0.8); }
   .contact-row { font-size: 13px; line-height: 2.0; }
   .contact-row .lbl { display: inline-block; width: 70px; color: rgba(255,255,255,0.5); }
+
+  /* CF埋め込みフォーム */
+  .cf-form-wrap {
+    background: #fff;
+    border: 2px solid #2a5a8c;
+    border-radius: 14px;
+    padding: 30px 40px;
+    display: inline-block;
+    max-width: 520px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 24px;
+  }
+  .cf-field { margin-bottom: 16px; }
+  .cf-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a3a5c;
+    margin-bottom: 6px;
+  }
+  .cf-input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #f8fafb;
+    border: 1px solid #d0dae4;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+    color: #333;
+    transition: border-color 0.2s;
+  }
+  .cf-input:focus { border-color: #2a5a8c; }
+  .cf-input::placeholder { color: #aaa; }
+  .cf-submit-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 900;
+    font-family: inherit;
+    color: #fff;
+    background: #2a5a8c;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .cf-submit-btn:hover { background: #1a3a5c; }
+  .cf-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
   /* レスポンシブ */
   @media (max-width: 600px) {
@@ -293,8 +322,7 @@
     .flow { gap: 10px; }
     .flow-box { width: 100%; max-width: 300px; }
     .cta-title { font-size: 22px; }
-    .email-cta { padding: 24px 20px; }
-    .email-cta .email-addr { font-size: 22px; }
+    .cf-form-wrap { padding: 24px 20px; }
     .cta-box { padding: 20px; }
     .contact { padding: 20px; }
   }
@@ -427,11 +455,30 @@
     </ul>
   </div>
 
-  <div class="email-cta">
-    <p style="font-size:15px;color:#555;line-height:1.8;">完全無料・秘密厳守です。<br>お預かりした情報はテスト目的のみに使用し、終了後に削除いたします。</p>
-    <p style="font-size:18px;font-weight:900;color:#1a3a5c;margin-top:16px;">下記メールアドレスまでお気軽にご連絡ください</p>
-    <p class="email-addr"><a href="mailto:info@fp-1.info?subject=テスト希望">info@fp-1.info</a></p>
-    <p style="font-size:13px;color:#888;">件名に「テスト希望」とご記入いただけるとスムーズです</p>
+  <div class="cf-form-wrap">
+    <h3 style="font-size:18px;font-weight:900;color:#1a3a5c;margin-bottom:6px;">テストに申し込む（無料）</h3>
+    <p style="font-size:13px;color:#888;margin-bottom:20px;">完全無料・秘密厳守です。お預かりした情報はテスト目的のみに使用し、終了後に削除いたします。</p>
+
+    <div class="cf-field">
+      <label class="cf-label">メールアドレス <span style="color:#c00;">*</span></label>
+      <input class="cf-input" type="email" id="cf_email" placeholder="例: info@example.com" required />
+    </div>
+    <div class="cf-field">
+      <label class="cf-label">会社名 <span style="color:#c00;">*</span></label>
+      <input class="cf-input" type="text" id="cf_company" placeholder="例: 株式会社○○建設" required />
+    </div>
+    <div class="cf-field">
+      <label class="cf-label">ご担当者名 <span style="color:#c00;">*</span></label>
+      <input class="cf-input" type="text" id="cf_name" placeholder="例: 山田 太郎" required />
+    </div>
+    <div class="cf-field">
+      <label class="cf-label">お電話番号 <span style="color:#c00;">*</span></label>
+      <input class="cf-input" type="tel" id="cf_phone" placeholder="例: 090-1234-5678" required />
+    </div>
+
+    <button type="button" class="cf-submit-btn" id="cfBtn" onclick="cfSubmit()">
+      <span id="cfBtnText">無料テストに申し込む</span>
+    </button>
   </div>
 
   <div class="contact">
@@ -446,5 +493,56 @@
 </section>
 </div>
 
+<script>
+var GAS_URL = 'https://script.google.com/macros/s/AKfycby1fJD8a8lOm7TmwHTZ7Cn2QSq3VCUDkiGhkiL-OASoYMKQnWia8gTU6z6a87Z8WSA/exec';
+
+function cfSubmit() {
+  var email   = document.getElementById('cf_email');
+  var company = document.getElementById('cf_company');
+  var name    = document.getElementById('cf_name');
+  var phone   = document.getElementById('cf_phone');
+  var btn     = document.getElementById('cfBtn');
+  var btnText = document.getElementById('cfBtnText');
+
+  var required = [email, company, name, phone];
+  var ok = true;
+  for (var i = 0; i < required.length; i++) {
+    if (!required[i].value.trim()) {
+      required[i].style.borderColor = '#c00';
+      ok = false;
+    } else {
+      required[i].style.borderColor = '#d0dae4';
+    }
+  }
+  if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+    email.style.borderColor = '#c00';
+    ok = false;
+  }
+  if (!ok) return;
+
+  btn.disabled = true;
+  btnText.textContent = '送信中...';
+
+  fetch(GAS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: email.value,
+      name: name.value,
+      phone: phone.value,
+      company: company.value,
+      zip: '',
+      message: '【建設業許可AIテスター希望】'
+    })
+  }).then(function() {
+    window.location.href = 'https://www.funnel-build.com/thanks-hojokin-contact-legacy2';
+  }).catch(function() {
+    btn.disabled = false;
+    btnText.textContent = '無料テストに申し込む';
+    alert('送信に失敗しました。もう一度お試しください。');
+  });
+}
+</script>
 </body>
 </html>
